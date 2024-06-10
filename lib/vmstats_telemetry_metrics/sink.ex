@@ -5,8 +5,8 @@ defmodule VmstatsTelemetryMetrics.Sink do
 
   @behaviour :vmstats_sink
 
-  @base_key Application.compile_env!(:vmstats, :base_key)
-  @key_separator Application.compile_env!(:vmstats, :key_separator)
+  @base_key Application.compile_env(:vmstats, :base_key, :vmstats_telemetry_metrics)
+  @key_separator Application.compile_env(:vmstats, :key_separator, ?.)
 
   @impl true
   def collect(:counter, key, _value) do
@@ -32,7 +32,7 @@ defmodule VmstatsTelemetryMetrics.Sink do
   defp metric_to_event_name(metric) do
     metric
     |> :erlang.iolist_to_binary()
-    |> :binary.split(@base_key)
+    |> :binary.split("#{@key_separator}")
     |> Enum.map(&:"#{&1}")
   end
 end
