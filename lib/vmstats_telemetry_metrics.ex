@@ -16,4 +16,15 @@ defmodule VmstatsTelemetryMetrics do
   #{telemetry_docs()}
 
   """
+
+  import Telemetry.Metrics
+
+  @doc """
+  Returns a list of Telemetry metrics.
+  """
+  def telemetry_metrics() do
+    [
+      {counter("vmstats.foo.bar")}
+    ]
+  end
 end
