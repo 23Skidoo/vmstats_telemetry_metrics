@@ -5,7 +5,8 @@ defmodule VmstatsTelemetryMetrics.Sink do
 
   @behaviour :vmstats_sink
 
-  @base_key Application.compile_env(:vmstats, :base_key, :vmstats_telemetry_metrics)
+  # TODO: should be configurable
+  @base_key Application.compile_env(:vmstats, :base_key, :vmstats)
   @key_separator Application.compile_env(:vmstats, :key_separator, ?.)
 
   @impl true
